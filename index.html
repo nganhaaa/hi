@@ -65,6 +65,8 @@
         <button class="tab active" data-tab="input">Nhập romaji</button>
         <button class="tab" data-tab="choose">Chọn chữ</button>
         <button class="tab" data-tab="flash">Flashcard</button>
+        <button class="tab" data-tab="chart">Bảng chữ cái</button>
+        <button class="tab" data-tab="typing">Typing 1 phút</button>
       </div>
 
       <div class="tabBody active" id="tab-input">
@@ -79,7 +81,10 @@
           <button id="inputNextBtn" class="ghost">Câu mới</button>
         </div>
 
-        <div id="inputPrompt" class="bigPrompt">...</div>
+        <div class="promptWrap">
+          <div id="inputPrompt" class="bigPrompt">...</div>
+          <span id="inputStreak" class="streak" title="Số câu đúng liên tiếp">🔥 <strong id="inputStreakCount">0</strong></span>
+        </div>
 
         <form id="inputForm" class="row">
           <input id="inputAnswer" placeholder="Nhập romaji" autocomplete="off">
@@ -126,6 +131,38 @@
           <span id="flashBack" class="hidden">...</span>
         </button>
         <p class="hint">Bấm vào thẻ để lật.</p>
+      </div>
+
+      <div class="tabBody" id="tab-chart">
+        <div class="chartBar">
+          <div class="segmented" id="chartScript" role="radiogroup" aria-label="Hệ chữ">
+            <button type="button" data-script="hiragana" class="active">Hiragana</button>
+            <button type="button" data-script="katakana">Katakana</button>
+            <button type="button" data-script="both">Cả hai</button>
+          </div>
+          <label class="chartToggle"><input type="checkbox" id="chartShowRomaji" checked> Hiện romaji</label>
+        </div>
+        <p class="hint" id="chartHint">Bấm vào ô để nghe phát âm.</p>
+        <div id="chartBody"></div>
+      </div>
+
+      <div class="tabBody" id="tab-typing">
+        <div class="typingStats">
+          <div class="stat"><span>Thời gian</span><strong id="typingTime">60</strong></div>
+          <div class="stat"><span>WPM</span><strong id="typingWpm">0</strong></div>
+          <div class="stat"><span>Đúng / Sai</span><strong><span id="typingCorrect">0</span> / <span id="typingWrong">0</span></strong></div>
+          <div class="stat"><span>Kỷ lục</span><strong id="typingBest">–</strong></div>
+        </div>
+
+        <div id="typingStrip" class="typingStrip" aria-live="polite"></div>
+
+        <div class="row">
+          <input id="typingInput" placeholder="Gõ romaji rồi nhấn Space" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+          <button id="typingRestart" type="button" class="ghost">Làm lại</button>
+        </div>
+        <p class="hint">Đồng hồ chạy khi bạn gõ phím đầu tiên. Space / Enter để sang từ tiếp, Esc để làm lại.</p>
+
+        <div id="typingResult" class="typingResult hidden"></div>
       </div>
     </section>
   </main>
