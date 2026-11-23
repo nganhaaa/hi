@@ -1,0 +1,341 @@
+:root {
+  --bg-1: #fff6e4;
+  --bg-2: #d7eff2;
+  --panel: #fffdf8;
+  --ink: #1e2a2f;
+  --muted: #586a71;
+  --accent: #e95f3a;
+  --accent-soft: #ffd9cc;
+  --line: #d8d9d0;
+  --ok: #1d8f4d;
+  --bad: #b4362f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Be Vietnam Pro", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 15% 10%, var(--bg-1), transparent 40%),
+    radial-gradient(circle at 80% 20%, #f7f4d5, transparent 35%),
+    linear-gradient(145deg, #f8fbfc, var(--bg-2));
+  min-height: 100vh;
+}
+
+.ambient {
+  display: none;
+}
+
+.hero {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 1rem;
+  animation: rise 0.5s ease-out;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(1.7rem, 3vw, 2.8rem);
+}
+
+.hero p {
+  margin: 0.6rem 0;
+  color: var(--muted);
+}
+
+.layout {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  gap: 1rem;
+}
+
+.panel {
+  background: color-mix(in srgb, var(--panel) 90%, white 10%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 12px 25px rgba(34, 57, 61, 0.08);
+  overflow: hidden;
+}
+
+.controls {
+  padding: 1rem;
+}
+
+.controls h2 {
+  margin-top: 0;
+}
+
+section {
+  border-top: 1px dashed #d9ddd4;
+  padding-top: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+section:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin: 0.4rem 0;
+  color: #314047;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 0.35rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chips label {
+  border: 1px solid #d3d8c9;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  background: #fff;
+  margin: 0;
+}
+
+select,
+input,
+button {
+  font: inherit;
+}
+
+select,
+input {
+  width: 100%;
+  border: 1px solid #cfd4c8;
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  background: #fff;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.58rem 0.8rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+button:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+button.ghost {
+  background: #edf2e7;
+  color: #2b3b42;
+}
+
+.trainer {
+  padding: 1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  background: #eef3f5;
+  color: #30414a;
+}
+
+.tab.active {
+  background: #233b41;
+  color: #fff;
+}
+
+.tabBody {
+  display: none;
+  margin-top: 1rem;
+  animation: fade 0.35s ease;
+}
+
+.tabBody.active {
+  display: block;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.65rem;
+  align-items: stretch;
+}
+
+.row > label {
+  margin: 0;
+}
+
+.row > button {
+  align-self: end;
+  min-height: 42px;
+}
+
+.inputActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  align-self: end;
+}
+
+.inputActions button {
+  min-height: 42px;
+}
+
+.bigPrompt {
+  margin: 1rem 0;
+  min-height: 96px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #d8ddd2;
+  background: linear-gradient(135deg, #fdfcf8, #f4f8f9);
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: clamp(2rem, 9vw, 4rem);
+}
+
+.promptLine {
+  margin-top: 1.1rem;
+  font-size: 1.2rem;
+}
+
+#choosePrompt {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  letter-spacing: 0.02em;
+}
+
+.optionGrid {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 0.55rem;
+}
+
+.optionBtn {
+  background: #fff;
+  border: 1px solid #d0d5ca;
+  color: #22323a;
+  min-height: 60px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 2rem;
+}
+
+.optionBtn.word {
+  font-size: 1.7rem;
+}
+
+.optionBtnCorrect {
+  border-color: #1d8f4d;
+  box-shadow: inset 0 0 0 2px rgba(29, 143, 77, 0.2);
+}
+
+.optionBtnWrong {
+  border-color: #b4362f;
+  box-shadow: inset 0 0 0 2px rgba(180, 54, 47, 0.2);
+  color: #b4362f;
+}
+
+.feedback {
+  min-height: 1.4rem;
+  margin: 0.85rem 0;
+  font-weight: 600;
+}
+
+.feedback.ok {
+  color: var(--ok);
+}
+
+.feedback.bad {
+  color: var(--bad);
+}
+
+.flashCard {
+  margin-top: 1rem;
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid #d6ddcf;
+  border-radius: 16px;
+  background: linear-gradient(160deg, #fffef8, #f0f4f7);
+  color: #1f2f36;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: clamp(1.7rem, 8vw, 3rem);
+  display: grid;
+  place-items: center;
+}
+
+.hint {
+  color: #586a71;
+  margin: 0.4rem 0;
+  font-size: 0.92rem;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .inputActions {
+    grid-template-columns: 1fr;
+  }
+
+  .optionGrid {
+    grid-template-columns: 1fr;
+  }
+}

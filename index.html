@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hiragana Katakana Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&family=M+PLUS+Rounded+1c:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient"></div>
+  <header class="hero">
+    <p class="eyebrow">Kana Trainer</p>
+    <h1>Hiragana Katakana Lab</h1>
+    <p>Học mặt chữ bằng bài tập nhập romaji, trắc nghiệm chọn chữ, và flashcard. Lọc theo bảng, hàng, hoặc chọn lẻ.</p>
+  </header>
+
+  <main class="layout">
+    <aside class="panel controls">
+      <h2>Bộ lọc</h2>
+
+      <section>
+        <h3>Hệ chữ</h3>
+        <label><input type="checkbox" id="scriptHiragana" checked> Hiragana</label>
+        <label><input type="checkbox" id="scriptKatakana" checked> Katakana</label>
+      </section>
+
+      <section>
+        <h3>Kiểu chọn</h3>
+        <label><input type="radio" name="scope" value="table" checked> Theo bảng</label>
+        <label><input type="radio" name="scope" value="row"> Theo hàng</label>
+        <label><input type="radio" name="scope" value="custom"> Chọn lẻ chữ</label>
+      </section>
+
+      <section id="rowPickerWrap" class="hidden">
+        <h3>Hàng</h3>
+        <div id="rowPicker" class="chips"></div>
+      </section>
+
+      <section id="customPickerWrap" class="hidden">
+        <h3>Chọn lẻ chữ</h3>
+        <select id="customPicker" multiple size="8"></select>
+        <p class="hint">Giữ Cmd để chọn nhiều chữ.</p>
+      </section>
+
+      <section>
+        <h3>Tuỳ chọn mở rộng</h3>
+        <label><input type="checkbox" id="toggleDakuten" checked> Có dakuten (が / ぎ ...)</label>
+        <label><input type="checkbox" id="toggleHandakuten" checked> Có handakuten (ぱ / ぴ ...)</label>
+        <label><input type="checkbox" id="toggleSokuon" checked> Có âm ngắt nhỏ (っ / ッ)</label>
+        <label><input type="checkbox" id="toggleSmall" checked> Có chữ nhỏ (ゃゅょ ...)</label>
+        <label><input type="checkbox" id="toggleKOnly"> Chỉ nhóm hàng K</label>
+      </section>
+
+      <section>
+        <h3>Tổng hợp</h3>
+        <p id="poolStats">Đang tải dữ liệu...</p>
+      </section>
+    </aside>
+
+    <section class="panel trainer">
+      <div class="tabs">
+        <button class="tab active" data-tab="input">Nhập romaji</button>
+        <button class="tab" data-tab="choose">Chọn chữ</button>
+        <button class="tab" data-tab="flash">Flashcard</button>
+      </div>
+
+      <div class="tabBody active" id="tab-input">
+        <div class="row">
+          <label>Chế độ câu hỏi
+            <select id="inputModeType">
+              <option value="mixed">Trộn chữ + từ</option>
+              <option value="single">Chỉ chữ lẻ</option>
+              <option value="word">Chỉ từ</option>
+            </select>
+          </label>
+          <button id="inputNextBtn" class="ghost">Câu mới</button>
+        </div>
+
+        <div id="inputPrompt" class="bigPrompt">...</div>
+
+        <form id="inputForm" class="row">
+          <input id="inputAnswer" placeholder="Nhập romaji" autocomplete="off">
+          <div class="inputActions">
+            <button type="submit">Kiểm tra</button>
+            <button type="button" id="inputRevealBtn" class="ghost">Ra đáp án</button>
+          </div>
+        </form>
+
+        <p id="inputFeedback" class="feedback"></p>
+      </div>
+
+      <div class="tabBody" id="tab-choose">
+        <div class="row">
+          <label>Chế độ câu hỏi
+            <select id="chooseModeType">
+              <option value="mixed">Trộn chữ + từ</option>
+              <option value="single">Chỉ chữ lẻ</option>
+              <option value="word">Chỉ từ</option>
+            </select>
+          </label>
+          <button id="chooseNextBtn" class="ghost">Câu mới</button>
+        </div>
+
+        <p class="promptLine">Romaji: <strong id="choosePrompt">...</strong></p>
+        <div id="chooseOptions" class="optionGrid"></div>
+        <p id="chooseFeedback" class="feedback"></p>
+      </div>
+
+      <div class="tabBody" id="tab-flash">
+        <div class="row">
+          <label>Chế độ thẻ
+            <select id="flashModeType">
+              <option value="mixed">Trộn chữ + từ</option>
+              <option value="single">Chỉ chữ lẻ</option>
+              <option value="word">Chỉ từ</option>
+            </select>
+          </label>
+          <button id="flashNextBtn" class="ghost">Thẻ tiếp theo</button>
+        </div>
+
+        <button id="flashCard" class="flashCard" type="button">
+          <span id="flashFront">...</span>
+          <span id="flashBack" class="hidden">...</span>
+        </button>
+        <p class="hint">Bấm vào thẻ để lật.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
